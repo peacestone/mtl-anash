@@ -1,0 +1,23 @@
+
+
+.App {
+  text-align: center;
+
+
+}
+
+
+
+
+
+
+#sidebar {
+  height: 93%;
+  background-color: red;
+  width: 280px;
+}
+
+
+body > #root > div {
+  height: 100vh;
+}
