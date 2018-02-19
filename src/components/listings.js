@@ -12,14 +12,16 @@ class Listings extends React.Component {
   }
 
 
-   contactItems = [{firstName: 'roger', lastName: 'albertson'}, {firstName: 'Tim', lastName: 'wahsington'} ].map((contact, index) => (
-    <Listing key={index} contact={contact} />
-  ))
   render(){
+    
+    const contactItems = this.props.people.map((contact, index) => (
+      <Listing key={index} contact={contact} />
+    ))
+    
   return (
     <div id='listings'>
       <List selection verticalAlign='middle'>
-        {this.contactItems}
+        {contactItems}
       </List>
     </div>
     )

@@ -6,20 +6,31 @@ class Sidebar extends Component {
 
   constructor(props) {
     super(props)
+    this.people = [{firstName: 'roger', lastName: 'albertson'}, {firstName: 'Tim', lastName: 'wahsington'}, {firstName: "chani", lastName: 'steinmetz'} ]
     this.state = {
-      searchInput: ''
+      searchInput: '',
+      results: this.people
     }
+
   }
 
-  handleSearchInput = (event) => this.setState({searchInput: event.target.value})
+  handleSearchInput = (event, test) => { 
+    this.setState({searchInput: event.target.value})
+    const results = this.people.filter((person) => person.firstName.includes(this.state.searchInput) || person.lastName.includes(this.state.searchInput) )
+    
+    results[0] != null ? this.setState({results}) : this.setState({results: this.people})
+
+}
 
   
 
   render() {
+    console.log(this.state);
+    
     return (
     <div id='sidebar' style={{margin: "1em"}}>
       <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
-      <Listings />
+      <Listings people={this.state.results} />
     </div>
   )
 }
