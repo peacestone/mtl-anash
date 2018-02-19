@@ -1,7 +1,6 @@
 import React from 'react'
 import Listing from './listing'
-import {Menu} from 'semantic-ui-react'
-import contactItems from '../'
+import {List} from 'semantic-ui-react'
 
 class Listings extends React.Component {
 
@@ -19,9 +18,9 @@ class Listings extends React.Component {
   render(){
   return (
     <div id='listings'>
-      <Menu vertical>
+      <List selection verticalAlign='middle'>
         {this.contactItems}
-      </Menu>
+      </List>
     </div>
     )
   }
