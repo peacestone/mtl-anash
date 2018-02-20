@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Listings from '../components/listings'
 import SearchInput from '../components/searchInput'
+import Fuse from 'fuse.js'
 
 class Sidebar extends Component {
 
@@ -15,22 +16,31 @@ class Sidebar extends Component {
   }
 
   handleSearchInput = (event, test) => { 
-    this.setState({searchInput: event.target.value})
-    const results = this.people.filter((person) => person.firstName.includes(this.state.searchInput) || person.lastName.includes(this.state.searchInput) )
-    
-    results[0] != null ? this.setState({results}) : this.setState({results: this.people})
+    this.setState({searchInput: event.target.value}, (props) => {
 
+    const options = {
+      keys: ['firstName', 'lastName'],
+      minMatchCharLength: 3,
+      //tokenize: true,
+      shouldSort: true,
+      threshold: 0.6
+     }
+     
+    const fuse = new Fuse(this.people, options)
+    const results = this.state.searchInput === '' ? this.people : fuse.search(this.state.searchInput)
+    this.setState({results}) 
+    }
+  )
 }
 
   
 
   render() {
-    console.log(this.state);
     
     return (
     <div id='sidebar' style={{margin: "1em"}}>
       <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
-      <Listings people={this.state.results} />
+      <Listings people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} />
     </div>
   )
 }

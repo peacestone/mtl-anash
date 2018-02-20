@@ -2,7 +2,6 @@ import React from 'react'
 import {List} from 'semantic-ui-react'
 
 const listing = ({contact}) => {
-console.log(contact)
   return (
     <List.Item>
       <List.Content id='listing'>

@@ -17,11 +17,12 @@ class Listings extends React.Component {
     const contactItems = this.props.people.map((contact, index) => (
       <Listing key={index} contact={contact} />
     ))
+
     
   return (
     <div id='listings'>
       <List selection verticalAlign='middle'>
-        {contactItems}
+        {contactItems.length > 0 ? contactItems : "No Matches Found!"}
       </List>
     </div>
     )
