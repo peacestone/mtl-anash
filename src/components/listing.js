@@ -5,8 +5,7 @@ const listing = ({contact}) => {
   return (
     <List.Item>
       <List.Content id='listing'>
-       <List.Header>{contact.firstName} {contact.lastName}</List.Header>
-
+        <List.Header>{contact.firstName} {contact.lastName}</List.Header>
       </List.Content>
     </List.Item>
   
