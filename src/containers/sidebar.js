@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Listings from '../components/listings'
 import SearchInput from '../components/searchInput'
 import Fuse from 'fuse.js'
+import {Segment, Container} from 'semantic-ui-react'
 
 class Sidebar extends Component {
 
@@ -38,10 +39,10 @@ class Sidebar extends Component {
   render() {
     
     return (
-    <div id='sidebar' style={{margin: "1em"}}>
-      <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
-      <Listings people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} />
-    </div>
+    <Segment floated='left' style={{ width: '260px'}} >
+        <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
+        <Listings people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} />
+    </Segment>
   )
 }
 }

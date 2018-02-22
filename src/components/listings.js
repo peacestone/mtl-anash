@@ -20,8 +20,8 @@ class Listings extends React.Component {
 
     
   return (
-    <div id='listings'>
-      <List selection verticalAlign='middle'>
+    <div id='listings' >
+      <List selection verticalAlign='middle' divided  >
         {contactItems.length > 0 ? contactItems : "No Matches Found!"}
       </List>
     </div>
