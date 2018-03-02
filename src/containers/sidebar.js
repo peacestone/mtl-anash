@@ -5,7 +5,7 @@ import Fuse from 'fuse.js'
 import {Segment, Container} from 'semantic-ui-react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {fetchPeople} from '../actions/peopleActions'
+import {fetchPeople, selectPerson} from '../actions/peopleActions'
 
 class Sidebar extends Component {
 
@@ -15,6 +15,7 @@ class Sidebar extends Component {
       searchInput: '',
       results: []
     }
+    this.handleListingClick = this.handleListingClick.bind(this)
 
   }
 
@@ -42,8 +43,16 @@ class Sidebar extends Component {
     const fuse = new Fuse(this.props.people, options)
     const results = fuse.search(this.state.searchInput)
     this.setState({results}) 
-    }
-  )
+    })
+  }
+
+  handleListingClick = (event, t) => {
+
+    
+    const personIndex = event.target.id || event.target.children[0].children[0].id
+    const person = this.state.results[personIndex]
+    
+    this.props.selectPerson(person)
 }
 
   
@@ -58,13 +67,13 @@ class Sidebar extends Component {
     return (
     <Segment floated='left' style={{ width: '260px'}} >
         <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
-        <Listings people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} />
+        <Listings handleListingClick={this.handleListingClick} people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} />
     </Segment>
   )}
 }
 
  const mapDispatchToProps = dispatch => (
-   bindActionCreators({fetchPeople}, dispatch)
+   bindActionCreators({fetchPeople, selectPerson}, dispatch)
  )
 
  const mapStateToProps = state => (
