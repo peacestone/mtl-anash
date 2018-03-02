@@ -11,7 +11,6 @@ class Sidebar extends Component {
 
   constructor(props) {
     super(props)
-    this.people = []
     this.state = {
       searchInput: '',
       results: []
@@ -22,19 +21,18 @@ class Sidebar extends Component {
   componentDidMount = () => this.props.fetchPeople()
 
 
-  handleSearchInput = (event, test) => { 
+  handleSearchInput = (event) => { 
     this.setState({searchInput: event.target.value}, (props) => {
 
     const options = {
       keys: ['firstName', 'lastName'],
       minMatchCharLength: 3,
-      //tokenize: true,
       shouldSort: true,
       threshold: 0.6
      }
      
-    const fuse = new Fuse(this.people, options)
-    const results = this.state.searchInput === '' ? this.people : fuse.search(this.state.searchInput)
+    const fuse = new Fuse(this.props.people, options)
+    const results = this.state.searchInput === '' ? this.props.people : fuse.search(this.state.searchInput)
     this.setState({results}) 
     }
   )
@@ -56,4 +54,8 @@ class Sidebar extends Component {
    bindActionCreators({fetchPeople}, dispatch)
  )
 
-export default connect(null, mapDispatchToProps)(Sidebar)
+ const mapStateToProps = state => (
+   {people: state.people}
+ )
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
