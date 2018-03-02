@@ -1,8 +1,12 @@
  
     const fetchPeople = (people) => {
-        return {type: "FETCH_PEOPLE", payload:  [{firstName: 'roger', lastName: 'albertson'}, {firstName: 'Tim', lastName: 'wahsington'}, {firstName: "chani", lastName: 'steinmetz'}]  }
+        return {type: "RECIEVE_PEOPLE", payload:  [{firstName: 'roger', lastName: 'albertson'}, {firstName: 'Tim', lastName: 'wahsington'}, {firstName: "chani", lastName: 'steinmetz'}]  }
     }
 
+    const selectPerson = (person) => (
+        {type: 'SELECTED_PERSON', payload: person}
+    )
 
-    export {fetchPeople}
+
+    export {fetchPeople, selectPerson}
 

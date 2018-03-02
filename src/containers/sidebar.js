@@ -18,7 +18,15 @@ class Sidebar extends Component {
 
   }
 
-  componentDidMount = () => this.props.fetchPeople()
+  componentDidMount = () => {
+    this.props.fetchPeople()
+  }
+
+  componentDidUpdate = () => {
+   if (this.state.results.length === 0) {
+      this.setState({results: this.props.people})
+   }
+  }
 
 
   handleSearchInput = (event) => { 
@@ -32,7 +40,7 @@ class Sidebar extends Component {
      }
      
     const fuse = new Fuse(this.props.people, options)
-    const results = this.state.searchInput === '' ? this.props.people : fuse.search(this.state.searchInput)
+    const results = fuse.search(this.state.searchInput)
     this.setState({results}) 
     }
   )
@@ -41,6 +49,11 @@ class Sidebar extends Component {
   
 
   render() {
+    if (this.props.people.length === 0) {
+      return (
+        <h1 style={{fontSize: "5em"}}>Hang On Tight </h1>
+      )
+    }
     
     return (
     <Segment floated='left' style={{ width: '260px'}} >
