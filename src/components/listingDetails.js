@@ -1,18 +1,22 @@
 import React from 'react'
 import {Container} from 'semantic-ui-react'
+import {connect} from 'react-redux'
 
-const listingDetails = (props) => {
+const listingDetails = ({selectedPerson}) => {
 
 
     return(
         <Container text style={{float: 'right', margin: "0 36.5%", fontSize: '2em'}}    >
-            <h3>Tom Alpha</h3>
-            <span>1234 Zulu St</span><br />
-            <span>Anytown YP</span><br />
-            <span>30000 USA</span>
+            <h3>{selectedPerson.firstName} {selectedPerson.lastName}</h3>
+            <span>{selectedPerson.address} </span><br />
+            <span>{selectedPerson.city}  {selectedPerson.state} </span><br />
+            <span>{selectedPerson.zipCode}  {selectedPerson.country} </span>
 
         </Container>
     )
 }
+
+
+
 
 export default listingDetails

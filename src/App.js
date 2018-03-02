@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Sidebar from './containers/sidebar'
 import NavBar from './components/navBar'
-import ListingDetails from './components/listingDetails'
+import MainDisplay from './containers/mainDisplay'
 import {Segment, Container} from 'semantic-ui-react'
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
         <NavBar  />
       <Container fluid>
         <Sidebar  />
-        <ListingDetails />
+        <MainDisplay />
       </Container>
       </div>
     );

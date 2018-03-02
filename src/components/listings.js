@@ -6,16 +6,15 @@ class Listings extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      activeItem: ''
-    }
+
+    
   }
 
 
   render(){
     
     const contactItems = this.props.people.map((contact, index) => (
-      <Listing key={index} contact={contact} />
+      <Listing handleListingClick={this.props.handleListingClick} key={index} contact={contact} resultsId={index} />
     ))
 
     
