@@ -1,10 +1,11 @@
-export default {
-    addPeople(people) {
-        return {type: "ADD_PEOPLE", payload: people}
-    },
+ 
+    const fetchPeople = (people) => {
+        return {type: "GET_PEOPLE", payload:  [{firstName: 'roger', lastName: 'albertson'}, {firstName: 'Tim', lastName: 'wahsington'}, {firstName: "chani", lastName: 'steinmetz'}]  }
+    }
 
-    addQueryInput(query) {
+    const addQueryInput = (query) => {
         return {type: 'ADD_QUERY_INPUT', payload: query}
     }
 
-}
+    export {fetchPeople}
+
