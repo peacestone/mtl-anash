@@ -15,6 +15,7 @@ class App extends Component {
         <Sidebar  />
         <MainDisplay />
       </Container>
+    
       </div>
     );
   }

@@ -24,7 +24,7 @@ class Sidebar extends Component {
   }
 
   componentDidUpdate = () => {
-   if (this.state.results.length === 0) {
+   if ( this.state.results.length === 0 && this.state.searchInput === '' ) {
       this.setState({results: this.props.people})
    }
   }
@@ -37,7 +37,7 @@ class Sidebar extends Component {
       keys: ['firstName', 'lastName'],
       minMatchCharLength: 3,
       shouldSort: true,
-      threshold: 0.6
+      threshold: 0.2
      }
      
     const fuse = new Fuse(this.props.people, options)
@@ -65,7 +65,7 @@ class Sidebar extends Component {
     }
     
     return (
-    <Segment floated='left' style={{ width: '260px'}} >
+    <Segment floated='left' style={{ width: '260px', height: '95vh', overflow: 'scroll'}} >
         <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
         <Listings handleListingClick={this.handleListingClick} people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} />
     </Segment>
