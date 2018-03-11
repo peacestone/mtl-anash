@@ -1,11 +1,13 @@
 import React from 'react'
-import {Segment, Input, Button} from 'semantic-ui-react'
+import {Segment, Container , Input, Button} from 'semantic-ui-react'
 
 
 
 const SearchInput = (props) => {
   return(
-    <Input focus onChange={props.handleSearchInput} value={props.searchValue} placeholder='Search...' />
+    <div  style={{top: '0px', position: 'sticky', backgroundColor: '#B2DBBF', padding: '0.25em 3em 0.25em 0.25em ' }} >
+    <Input fluid  focus onChange={props.handleSearchInput} value={props.searchValue} placeholder='Search...' />
+    </div>
 
   )
 }

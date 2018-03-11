@@ -13,9 +13,32 @@ class Listings extends React.Component {
 
   render(){
     
-    const contactItems = this.props.people.map((contact, index) => (
-      <Listing handleListingClick={this.props.handleListingClick} key={index} contact={contact} resultsId={index} />
-    ))
+    let contactItems
+    
+    switch(this.props.queryType){
+      case 'address':
+        contactItems = this.props.people.map((contact, index) => (
+          <Listing handleListingClick={this.props.handleListingClick} key={index}  contactDisplay={contact.address} resultsId={index}  />
+        ))
+      break
+      case 'phoneNumber':
+        contactItems = this.props.people.map((contact, index) => (
+          <Listing handleListingClick={this.props.handleListingClick} key={index} contactDisplay={contact.phoneNumber}  resultsId={index}  />
+        ))
+      break
+      default:
+        contactItems = this.props.people.map((contact, index) => {
+          const name = `${contact.firstName} ${contact.lastName}`
+          return (
+          <Listing handleListingClick={this.props.handleListingClick} key={index}  contactDisplay={name} resultsId={index}  />
+        )}
+      )
+              
+    }
+
+    /*const contactItems = this.props.people.map((contact, index) => (
+      <Listing handleListingClick={this.props.handleListingClick} key={index}  contact={contact} resultsId={index} queryType={this.props.queryType} />
+    ))*/
 
     
   return (

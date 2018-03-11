@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Listings from '../components/listings'
 import SearchInput from '../components/searchInput'
 import Fuse from 'fuse.js'
-import {Segment, Container} from 'semantic-ui-react'
+import Tab, { Segment, Container } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {fetchPeople, selectPerson} from '../actions/peopleActions'
@@ -65,9 +65,9 @@ class Sidebar extends Component {
     }
     
     return (
-    <Segment floated='left' style={{ width: '260px', height: '95vh', overflow: 'scroll'}} >
+    <Segment floated='left' style={{ width: '260px',height: '95vh', overflowY: 'scroll', overflowX: 'visible', padding: '0px', marginTop: '0px'}} >
         <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
-        <Listings handleListingClick={this.handleListingClick} people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} />
+        <Listings  handleListingClick={this.handleListingClick} people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} queryType={this.props.queryType} />
     </Segment>
   )}
 }
@@ -77,7 +77,7 @@ class Sidebar extends Component {
  )
 
  const mapStateToProps = state => (
-   {people: state.people}
+   {people: state.people, queryType: state.queryType}
  )
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
