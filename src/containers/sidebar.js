@@ -67,7 +67,7 @@ class Sidebar extends Component {
     return (
     <Segment floated='left' style={{ width: '260px',height: '95vh', overflowY: 'scroll', overflowX: 'visible', padding: '0px', marginTop: '0px'}} >
         <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
-        <Listings  handleListingClick={this.handleListingClick} people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} queryType={this.props.queryType} />
+        <Listings  handleListingClick={this.handleListingClick} people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} queryBy={this.props.queryBy} />
     </Segment>
   )}
 }
@@ -77,7 +77,7 @@ class Sidebar extends Component {
  )
 
  const mapStateToProps = state => (
-   {people: state.people, queryType: state.queryType}
+   {people: state.people, queryBy: state.queryBy}
  )
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)

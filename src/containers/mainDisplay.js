@@ -12,7 +12,7 @@ class MainDisplay extends React.Component {
         return  <ListingDetails selectedPerson={this.props.selectedPerson} />
     }
         return (
-            <Container text style={{}} >
+            <Container text >
                 <h1 style={{fontSize: '4em'}}>Welcome to MTL Anash!</h1>
             </Container>
         )   

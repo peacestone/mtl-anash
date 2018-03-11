@@ -1,5 +1,8 @@
 import React from 'react'
 import {Container, Menu} from 'semantic-ui-react'
+import {queryBy} from '../actions/peopleActions'
+import {connect} from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 class navBar extends React.Component {
 
@@ -10,7 +13,17 @@ class navBar extends React.Component {
         }
     }
 
-    handleNavBarClick = (event) => this.setState({activeItem: event.target.id})
+    handleNavBarClick = (event) => {
+        this.setState({activeItem: event.target.id} )
+    }
+
+    componentDidUpdate = (prevState) => {
+        const activeItem = this.state.activeItem
+        
+        if(prevState.activeItem !== activeItem ){
+            this.props.queryBy(activeItem)
+        }
+    }
 
 
     render() {
@@ -18,7 +31,7 @@ class navBar extends React.Component {
             <Menu style={{ marginBottom: '0px'}}  fluid  size='large' >
                 <Menu.Item name='MTL Anash'  header />
                 <Menu.Item onClick={this.handleNavBarClick} id='name' name='Search By Name'active={this.state.activeItem === 'name'}/>
-                <Menu.Item onClick={this.handleNavBarClick} id='phone' name='Search By Phone Number' active={this.state.activeItem === 'phone'} />
+                <Menu.Item onClick={this.handleNavBarClick} id='phoneNumber' name='Search By Phone Number' active={this.state.activeItem === 'phoneNumber'} />
                 <Menu.Item onClick={this.handleNavBarClick} id='address' name='Search By Address' active={this.state.activeItem === 'address'} />
                 <Menu.Item onClick={this.handleNavBarClick} id= 'updateListing' name='Update a Listing' active={this.state.activeItem === 'updateListing'} />
 
@@ -27,4 +40,12 @@ class navBar extends React.Component {
     ) }
 }
 
-export default navBar
+const mapDispatchToProps = dispatch => (
+    bindActionCreators({queryBy}, dispatch)
+)
+
+const mapStateToProps = state => (
+    {activeItem: state.queryBy}
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(navBar)

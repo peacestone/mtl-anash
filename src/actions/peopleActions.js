@@ -11,6 +11,8 @@
         {type: 'SELECTED_PERSON', payload: person}
     )
 
+    const queryBy = (by) => ( {type: 'QUERY_BY', payload: by} )
 
-    export {fetchPeople, selectPerson}
+
+    export {fetchPeople, selectPerson, queryBy}
 

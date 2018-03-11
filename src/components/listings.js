@@ -15,7 +15,7 @@ class Listings extends React.Component {
     
     let contactItems
     
-    switch(this.props.queryType){
+    switch(this.props.queryBy){
       case 'address':
         contactItems = this.props.people.map((contact, index) => (
           <Listing handleListingClick={this.props.handleListingClick} key={index}  contactDisplay={contact.address} resultsId={index}  />
@@ -24,6 +24,7 @@ class Listings extends React.Component {
       case 'phoneNumber':
         contactItems = this.props.people.map((contact, index) => (
           <Listing handleListingClick={this.props.handleListingClick} key={index} contactDisplay={contact.phoneNumber}  resultsId={index}  />
+          
         ))
       break
       default:
@@ -35,6 +36,7 @@ class Listings extends React.Component {
       )
               
     }
+
 
     /*const contactItems = this.props.people.map((contact, index) => (
       <Listing handleListingClick={this.props.handleListingClick} key={index}  contact={contact} resultsId={index} queryType={this.props.queryType} />
