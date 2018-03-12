@@ -33,8 +33,16 @@ class Sidebar extends Component {
   handleSearchInput = (event) => { 
     this.setState({searchInput: event.target.value}, (props) => {
 
+      let queryKeys 
+      if(this.props.queryBy !== 'phoneNumber' && this.props.queryBy !== 'address'){
+        queryKeys = ['firstName', 'lastName']
+      } else {
+        queryKeys = [this.props.queryBy]
+      }
+      console.log(queryKeys)
+
     const options = {
-      keys: ['firstName', 'lastName'],
+      keys: queryKeys,
       minMatchCharLength: 3,
       shouldSort: true,
       threshold: 0.2
