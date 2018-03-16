@@ -13,6 +13,10 @@
 
     const queryBy = (by) => ( {type: 'QUERY_BY', payload: by} )
 
+    const removeSelectedPerson = () => (
+        {type: 'REMOVE_SELECTED_PERSON'}
+    )
 
-    export {fetchPeople, selectPerson, queryBy}
+
+    export {fetchPeople, selectPerson, queryBy, removeSelectedPerson}
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Container, Menu} from 'semantic-ui-react'
-import {queryBy} from '../actions/peopleActions'
+import {queryBy, removeSelectedPerson} from '../actions/peopleActions'
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -29,11 +29,13 @@ class navBar extends React.Component {
     render() {
         return (
             <Menu style={{ marginBottom: '0px'}}  fluid  size='large' >
-                <Menu.Item name='MTL Anash'  header />
+                <Menu.Item name='MTL Anash'  header onMouseDown={() => this.props.removeSelectedPerson()} />
                 <Menu.Item onClick={this.handleNavBarClick} id='name' name='Search By Name'active={this.state.activeItem === 'name'}/>
                 <Menu.Item onClick={this.handleNavBarClick} id='phoneNumber' name='Search By Phone Number' active={this.state.activeItem === 'phoneNumber'} />
                 <Menu.Item onClick={this.handleNavBarClick} id='address' name='Search By Address' active={this.state.activeItem === 'address'} />
-                <Menu.Item onClick={this.handleNavBarClick} id= 'updateListing' name='Update a Listing' active={this.state.activeItem === 'updateListing'} />
+                <Menu.Menu position='right' >
+                    <Menu.Item onClick={this.handleNavBarClick} id= 'updateListing' name='Update a Listing' active={this.state.activeItem === 'updateListing'} />
+                </Menu.Menu>
 
             </Menu>
 
@@ -41,7 +43,7 @@ class navBar extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({queryBy}, dispatch)
+    bindActionCreators({queryBy, removeSelectedPerson}, dispatch)
 )
 
 const mapStateToProps = state => (

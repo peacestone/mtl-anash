@@ -4,6 +4,9 @@ const peopleReducer = (state = {people: [], selectedPerson: {id: '' , firstName:
             return Object.assign({},state, {people: action.payload})
         case 'SELECTED_PERSON':
             return Object.assign({},state, {selectedPerson: action.payload})
+        case 'REMOVE_SELECTED_PERSON':
+            return Object.assign({},state, {selectedPerson: {id: '' , firstName: '', lastName: '', address: '', city: '', state: '', zipCode: '', country: '', phoneNumber: ''}})
+
         case 'QUERY_BY':
              return Object.assign({},state, {queryBy: action.payload})
         default:
