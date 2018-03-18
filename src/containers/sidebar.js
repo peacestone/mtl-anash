@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Listings from '../components/listings'
 import SearchInput from '../components/searchInput'
 import Fuse from 'fuse.js'
-import Tab, { Segment, Container } from 'semantic-ui-react'
+import { Segment } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {fetchPeople, selectPerson} from '../actions/peopleActions'
@@ -73,7 +73,7 @@ class Sidebar extends Component {
     }
     
     return (
-    <Segment  floated='left' style={{ width: '260px',height: '93vh', overflowY: 'scroll', overflowX: 'visible', padding: '0px', marginTop: '0px', marginBottom: '0px'}} >
+    <Segment  floated='left' style={{ width: '260px', height: '93vh', overflowY: 'scroll', overflowX: 'visible', padding: '0px', marginTop: '0px', marginBottom: '0px'}} >
         <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
         <Listings  handleListingClick={this.handleListingClick} people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} queryBy={this.props.queryBy} />
     </Segment>

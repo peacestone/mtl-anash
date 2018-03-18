@@ -11,12 +11,12 @@
         {type: 'SELECTED_PERSON', payload: person}
     )
 
-    const queryBy = (by) => ( {type: 'QUERY_BY', payload: by} )
+    const setNavBarItem = (item) => ( {type: 'SET_NAVBAR_ITEM', payload: item} )
 
     const removeSelectedPerson = () => (
         {type: 'REMOVE_SELECTED_PERSON'}
     )
 
 
-    export {fetchPeople, selectPerson, queryBy, removeSelectedPerson}
+    export {fetchPeople, selectPerson, setNavBarItem, removeSelectedPerson}
 
