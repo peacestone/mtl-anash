@@ -9,11 +9,11 @@ class MainDisplay extends React.Component {
     render(){
 
     if(this.props.selectedPerson.firstName !== '') {
-        return  <ListingDetails selectedPerson={this.props.selectedPerson} />
+        return  <ListingDetails  selectedPerson={this.props.selectedPerson} />
     }
         return (
-            <Container text >
-                <h1 style={{fontSize: '4em'}}>Welcome to MTL Anash!</h1>
+            <Container  >
+                <h1 style={{fontSize: '4em', textAlign: 'center'}}>Welcome to MTL Anash!</h1>
             </Container>
         )   
         }

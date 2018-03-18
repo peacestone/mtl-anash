@@ -73,7 +73,7 @@ class Sidebar extends Component {
     }
     
     return (
-    <Segment floated='left' style={{ width: '260px',height: '95vh', overflowY: 'scroll', overflowX: 'visible', padding: '0px', marginTop: '0px'}} >
+    <Segment  floated='left' style={{ width: '260px',height: '93vh', overflowY: 'scroll', overflowX: 'visible', padding: '0px', marginTop: '0px', marginBottom: '0px'}} >
         <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
         <Listings  handleListingClick={this.handleListingClick} people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} queryBy={this.props.queryBy} />
     </Segment>

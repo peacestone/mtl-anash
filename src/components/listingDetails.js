@@ -7,7 +7,7 @@ const listingDetails = ({selectedPerson}) => {
 
     return(
         
-        <Container text style={{float: 'right', margin: "0 36.5%", fontSize: '2em'}}    >
+        <Container text style={{ fontSize: '2em', textAlign: 'center' }}    >
              <h3 style={{fontSize: '2em'}}>{selectedPerson.firstName} {selectedPerson.lastName}</h3>
              <span>{selectedPerson.address} </span><br />
              <span>{selectedPerson.zipCode}</span><br />
