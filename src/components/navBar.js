@@ -12,6 +12,7 @@ class navBar extends React.Component {
     }
 
     render() {
+        console.log(this.props.activeNavbarItem)
         return (
             <Menu style={{ marginBottom: '0px'}}  fluid  size='large' >
                 <Menu.Item name='MTL Anash'  header onMouseDown={() => this.props.removeSelectedPerson()} />

@@ -17,6 +17,7 @@ class Sidebar extends Component {
     }
     this.handleListingClick = this.handleListingClick.bind(this)
 
+
   }
 
   componentDidMount = () => {
@@ -34,12 +35,12 @@ class Sidebar extends Component {
     this.setState({searchInput: event.target.value}, (props) => {
 
       let queryKeys 
-      if(this.props.queryBy !== 'phoneNumber' && this.props.queryBy !== 'address'){
+      if(this.props.activeNavbarItem !== 'phoneNumber' && this.props.activeNavbarItem !== 'address'){
+        console.log('not phone ubmer or address')
         queryKeys = ['firstName', 'lastName']
       } else {
-        queryKeys = [this.props.queryBy]
+        queryKeys = [this.props.activeNavbarItem]
       }
-      console.log(queryKeys)
 
     const options = {
       keys: queryKeys,
@@ -75,7 +76,7 @@ class Sidebar extends Component {
     return (
     <Segment  floated='left' style={{ width: '260px', height: '93vh', overflowY: 'scroll', overflowX: 'visible', padding: '0px', marginTop: '0px', marginBottom: '0px'}} >
         <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
-        <Listings  handleListingClick={this.handleListingClick} people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} queryBy={this.props.queryBy} />
+        <Listings  handleListingClick={this.handleListingClick} people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} queryBy={this.props.activeNavbarItem} />
     </Segment>
   )}
 }
@@ -85,7 +86,7 @@ class Sidebar extends Component {
  )
 
  const mapStateToProps = state => (
-   {people: state.people, queryBy: state.queryBy}
+   {people: state.people, activeNavbarItem: state.activeNavbarItem}
  )
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
