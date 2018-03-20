@@ -11,9 +11,24 @@ class MainDisplay extends React.Component {
     if(this.props.selectedPerson.firstName !== '') {
         return  <ListingDetails  selectedPerson={this.props.selectedPerson} />
     }
-    else if(this.props.queryBy === 'updateListing'){
+    else if(this.props.activeNavbarItem === 'updateListing'){
         return (
-            <h1> Select a listing to update</h1>
+            <h1> Search for a listing to update</h1>
+        )
+    }
+    else if(this.props.activeNavbarItem === 'phoneNumber'){
+        return (
+            <h1> Search for a person by entering a phone number</h1>
+        )
+    }
+    else if(this.props.activeNavbarItem === 'address'){
+        return (
+            <h1> Search for a person by entering an address</h1>
+        )
+    }
+    else if(this.props.activeNavbarItem === 'name'){
+        return (
+            <h1> Search for a person by entering a name</h1>
         )
     }
         return (
@@ -31,7 +46,7 @@ class MainDisplay extends React.Component {
 
 
 const mapStateToProps = state => (
-    {selectedPerson: state.selectedPerson, queryBy: state.queryBy}
+    {selectedPerson: state.selectedPerson, activeNavbarItem: state.activeNavbarItem}
 )
 
 export default connect(mapStateToProps)(MainDisplay)
