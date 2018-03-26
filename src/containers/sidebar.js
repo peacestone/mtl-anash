@@ -36,7 +36,6 @@ class Sidebar extends Component {
 
       let queryKeys 
       if(this.props.activeNavbarItem !== 'phoneNumber' && this.props.activeNavbarItem !== 'address'){
-        console.log('not phone ubmer or address')
         queryKeys = ['firstName', 'lastName']
       } else {
         queryKeys = [this.props.activeNavbarItem]

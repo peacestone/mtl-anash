@@ -3,7 +3,6 @@ import './App.css';
 import Sidebar from './containers/sidebar'
 import NavBar from './components/navBar'
 import MainDisplay from './containers/mainDisplay'
-import {Segment, Container} from 'semantic-ui-react'
 
 class App extends Component {
 

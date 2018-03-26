@@ -1,6 +1,5 @@
 import React from 'react' 
 import {connect} from 'react-redux'
-import ListingDetails from '../components/listingDetails'
 import {Container} from 'semantic-ui-react';
 import UpdateListingInput from './updateListingInput'
 import SearchMainDisplay from './searchMainDisplay'

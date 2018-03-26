@@ -1,5 +1,5 @@
 import React from 'react'
-import {Input} from 'semantic-ui-react'
+import {Button, Form} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
 
@@ -7,21 +7,58 @@ import {connect} from 'react-redux'
 class updateListingInput extends React.Component {
     constructor(props){
 		super(props)
-		this.state = {
-			input: this.props.selectedPerson
-			}
 
+		this.state = {
+			firstName: '',
+			lastName: '',
+			address: '',
+			zipCode: '',
+			phoneNumber: ''
+		}
+
+	}
+	
+	handleFormInput = ({target}) => {
+		this.setState({[target.name]: target.value})
 	}
 	
 	
 	componentWillReceiveProps = (nextProps) => {
-		this.setState({input: nextProps.selectedPerson})
+		this.setState(nextProps.selectedPerson)
+	}
+	
+	handleSubmit = (event) => {
+		this.setState({
+			firstName: '',
+			lastName: '',
+			address: '',
+			zipCode: '',
+			phoneNumber: ''
+		})
+		alert('Thank you for your submission!')
 	}
 		
 	
 	render() {
 		return (
-			<Input placeholder='First Name' value={this.state.input.firstName} />
+			<div>
+				<Form onSubmit={this.handleSubmit} style={{ left: '270px'}}>
+				<Form.Group >
+					<Form.Input name='firstName' label='First Name' placeholder='First Name' onChange={this.handleFormInput} value={this.state.firstName}  />
+					<Form.Input  label='Last Name' name='lastName' placeholder='Last Name' onChange={this.handleFormInput} value={this.state.lastName}  />
+				</Form.Group>
+				<Form.Group>
+
+				<Form.Input  label='Address' name='address' placeholder='Address' onChange={this.handleFormInput} value={this.state.address} />
+				<Form.Input label='Zip Code' name='zipCode' placeholder='Zip Code' onChange={this.handleFormInput} value={this.state.zipCode} />
+				<Form.Input label='Phone Number' name='phoneNumber' placeholder='Phone Number' onChange={this.handleFormInput} value={this.state.phoneNumber} />
+				</Form.Group>
+				<Form.Group>
+					<Form.Button>Submit Update</Form.Button>
+				</Form.Group>
+
+				</Form>
+			</div>
 		)
 	}
 	
