@@ -1,20 +1,17 @@
 import React from 'react'
 import {Button, Form} from 'semantic-ui-react'
 import {connect} from 'react-redux'
-
+import {bindActionCreators} from 'redux'
+import {removeSelectedPerson} from '../actions/peopleActions'
 
 
 class updateListingInput extends React.Component {
     constructor(props){
 		super(props)
 
-		this.state = {
-			firstName: '',
-			lastName: '',
-			address: '',
-			zipCode: '',
-			phoneNumber: ''
-		}
+		this.state = this.props.selectedPerson
+		
+		
 
 	}
 	
@@ -28,13 +25,7 @@ class updateListingInput extends React.Component {
 	}
 	
 	handleSubmit = (event) => {
-		this.setState({
-			firstName: '',
-			lastName: '',
-			address: '',
-			zipCode: '',
-			phoneNumber: ''
-		})
+		this.props.removeSelectedPerson()
 		alert('Thank you for your submission!')
 	}
 		
@@ -64,8 +55,13 @@ class updateListingInput extends React.Component {
 	
 }
 
+const mapDispatchToProps = dispatch => (
+	bindActionCreators({removeSelectedPerson}, dispatch)
+)
+
+
 const mapStateToProps = state => { return(
 {selectedPerson: state.selectedPerson}
 )}
 
-export default connect(mapStateToProps)(updateListingInput)
+export default connect(mapStateToProps, mapDispatchToProps)(updateListingInput)

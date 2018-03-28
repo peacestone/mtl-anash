@@ -12,9 +12,8 @@ class MainDisplay extends React.Component {
      if(this.props.activeNavbarItem === 'updateListing'){
         return (
             <div>
-                <h1> Search for a listing to update</h1>
-                <UpdateListingInput />
-            </div>
+			{ this.props.selectedPerson.firstName ? <UpdateListingInput /> : <h1> Search for a listing to update</h1> } 
+			</div>
         )
     }
     else if(this.props.activeNavbarItem === 'phoneNumber'){
