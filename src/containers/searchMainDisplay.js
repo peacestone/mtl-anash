@@ -3,7 +3,6 @@ import ListingDetails from '../components/listingDetails'
 
 
 const searchMainDisplay = props => {
-    console.log(props)
     if (props.selectedPerson.firstName){
         return  <ListingDetails  selectedPerson={props.selectedPerson} />
     }

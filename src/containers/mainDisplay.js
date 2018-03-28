@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Container} from 'semantic-ui-react';
 import UpdateListingInput from './updateListingInput'
 import SearchMainDisplay from './searchMainDisplay'
+import ListingDetails from '../components/listingDetails'
 
 class MainDisplay extends React.Component {
     
@@ -37,7 +38,7 @@ class MainDisplay extends React.Component {
     
     return (
             <Container  >
-                <h1 style={{fontSize: '4em', textAlign: 'center'}}>Welcome to MTL Anash!</h1>
+			{ this.props.selectedPerson.firstName ? <ListingDetails selectedPerson={this.props.selectedPerson} /> : <h1 style={{fontSize: '4em', textAlign: 'center'}}>Welcome to MTL Anash!</h1> } 
             </Container>
         )
     }

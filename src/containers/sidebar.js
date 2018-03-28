@@ -23,11 +23,21 @@ class Sidebar extends Component {
   componentDidMount = () => {
     this.props.fetchPeople()
   }
+  
+   componentWillReceiveProps = nextProps => {
+	   
+	  if(nextProps.activeNavbarItem !== this.props.activeNavbarItem){
+		  this.setState({searchInput: '', results: this.props.people})
+	  }
+
+  }
 
   componentDidUpdate = () => {
    if ( this.state.results.length === 0 && this.state.searchInput === '' ) {
       this.setState({results: this.props.people})
+	  
    }
+   
   }
 
 
@@ -66,6 +76,7 @@ class Sidebar extends Component {
   
 
   render() {
+	  console.log(this.state)
     if (this.props.people.length === 0) {
       return (
         <h1 style={{fontSize: "5em"}}>Hang On Tight </h1>
