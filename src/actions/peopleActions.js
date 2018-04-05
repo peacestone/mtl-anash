@@ -1,11 +1,26 @@
     import seeds from './seeds'
     
     
-    const fetchPeople = (people) => {
-        /*return {type: "RECIEVE_PEOPLE", payload:  [{firstName: 'Roger', lastName: 'Albertson', address: '123 applesause', city: 'Aweseometown', state: 'CO', country: "USA"}, {firstName: 'Tim', lastName: 'Wahsington', address: '443 Whatever St', city: 'Mooterville', state: 'WT', zipCode: '33230', country: 'USA'}, {firstName: "Chani", lastName: 'Steinmetz', address: '897 Cookie Rd', city: 'Picarsaw', state: 'QC', zipCode: 'G4IH9W', country: 'Canada'}]  }*/
+    const fetchPeople = () => {
 
-        return  {type: "RECIEVE_PEOPLE", payload: seeds}
-    }
+        return dispatch => {
+            fetch('http://localhost:3001/api/people')
+            .then((response) => {
+                console.log(response)
+                if(!response.ok){
+                    throw new Error('bad request')
+                }
+                
+                return response.json()
+            }, error => console.log(error))
+            .then(people => dispatch({type: "RECIEVE_PEOPLE", payload: people}))
+        
+            }
+
+        }
+
+          
+    
 
     const selectPerson = (person) => (
         {type: 'SELECTED_PERSON', payload: person}
@@ -20,3 +35,15 @@
 
     export {fetchPeople, selectPerson, setNavBarItem, removeSelectedPerson}
 
+    
+//TODO implement this in fetch action
+    const xfetchPeople = () => {
+        fetch('http://localhost:3001/api/people')
+        .then((people) => {
+          
+          return people.json()
+        }, error => console.log(error))
+        .then(json => this.props.fetchPeople(json))
+  
+      }
+      //fetchPeople()

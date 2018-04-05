@@ -20,6 +20,10 @@ class Sidebar extends Component {
 
   }
 
+
+ 
+
+
   componentDidMount = () => {
     this.props.fetchPeople()
   }
