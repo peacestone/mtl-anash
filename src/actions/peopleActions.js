@@ -4,6 +4,7 @@
     const fetchPeople = () => {
 
         return dispatch => {
+            dispatch({type: 'FETCH_PEOPLE'})
             fetch('http://localhost:3001/api/people')
             .then((response) => {
                 console.log(response)
@@ -19,6 +20,7 @@
 
         }
 
+    
           
     
 
@@ -36,14 +38,3 @@
     export {fetchPeople, selectPerson, setNavBarItem, removeSelectedPerson}
 
     
-//TODO implement this in fetch action
-    const xfetchPeople = () => {
-        fetch('http://localhost:3001/api/people')
-        .then((people) => {
-          
-          return people.json()
-        }, error => console.log(error))
-        .then(json => this.props.fetchPeople(json))
-  
-      }
-      //fetchPeople()
