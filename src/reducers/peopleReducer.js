@@ -8,7 +8,6 @@ const peopleReducer = (state = {people: [], selectedPerson: {id: '' , firstName:
             return Object.assign({},state, {selectedPerson: {id: '' , firstName: '', lastName: '', address: '', city: '', state: '', zipCode: '', country: '', phoneNumber: ''}})
         case 'SET_NAVBAR_ITEM':
              return Object.assign({},state, {activeNavbarItem: action.payload})
-             
         case 'FETCH_PEOPLE':
             return Object.assign({},state, {isFetchingPeople: true})
         default:

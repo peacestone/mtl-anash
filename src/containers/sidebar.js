@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Listings from '../components/listings'
 import SearchInput from '../components/searchInput'
 import Fuse from 'fuse.js'
-import { Segment } from 'semantic-ui-react'
+import { Segment,Dimmer, Loader } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {fetchPeople, selectPerson} from '../actions/peopleActions'
@@ -13,39 +13,26 @@ class Sidebar extends Component {
     super(props)
     this.state = {
       searchInput: '',
-      results: []
+      results: this.props.people
     }
     this.handleListingClick = this.handleListingClick.bind(this)
 
-
   }
 
+  componentDidUpdate = (prevProps, prevState) => {
+    if ( this.state.results.length === 0 && this.state.searchInput === '' ) {
+      this.setState( {results: this.props.people})
+    }
 
- 
-
-
-  componentDidMount = () => {
-    this.props.fetchPeople()
+    if (prevProps.activeNavbarItem !== this.props.activeNavbarItem) {
+      this.setState({searchInput: '', results: this.props.people})
+    }
   }
+
   
-   componentWillReceiveProps = nextProps => {
-	   
-	  if(nextProps.activeNavbarItem !== this.props.activeNavbarItem){
-		  this.setState({searchInput: '', results: this.props.people})
-	  }
-
-  }
-
-  componentDidUpdate = () => {
-   if ( this.state.results.length === 0 && this.state.searchInput === '' ) {
-      this.setState({results: this.props.people})
-	  
-   }
-   
-  }
 
 
-  handleSearchInput = (event) => { 
+  handleSearchInput = (event) => {
     this.setState({searchInput: event.target.value}, (props) => {
 
       let queryKeys 
@@ -80,17 +67,14 @@ class Sidebar extends Component {
   
 
   render() {
-	  console.log(this.state)
-    if (this.props.people.length === 0) {
-      return (
-        <h1 style={{fontSize: "5em"}}>Hang On Tight </h1>
-      )
-    }
+
+
     
     return (
     <Segment  floated='left' style={{ width: '260px', height: '93vh', overflowY: 'scroll', overflowX: 'visible', padding: '0px', marginTop: '0px', marginBottom: '0px'}} >
-        <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
-        <Listings  handleListingClick={this.handleListingClick} people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} queryBy={this.props.activeNavbarItem} />
+
+      <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
+      <Listings  handleListingClick={this.handleListingClick} people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} queryBy={this.props.activeNavbarItem} />
     </Segment>
   )}
 }
@@ -99,8 +83,9 @@ class Sidebar extends Component {
    bindActionCreators({fetchPeople, selectPerson}, dispatch)
  )
 
- const mapStateToProps = state => (
-   {people: state.people, activeNavbarItem: state.activeNavbarItem}
- )
+ const mapStateToProps = state => {
+  return(
+   {people: state.people, activeNavbarItem: state.activeNavbarItem, isFetching: state.isFetchingPeople}
+ )}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)

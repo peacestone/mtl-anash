@@ -37,11 +37,6 @@ class Listings extends React.Component {
               
     }
 
-
-    /*const contactItems = this.props.people.map((contact, index) => (
-      <Listing handleListingClick={this.props.handleListingClick} key={index}  contact={contact} resultsId={index} queryType={this.props.queryType} />
-    ))*/
-
     
   return (
     <div id='listings' >
