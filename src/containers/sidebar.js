@@ -67,11 +67,8 @@ class Sidebar extends Component {
   
 
   render() {
-
-
-    
     return (
-    <Segment  floated='left' style={{ width: '260px', height: '93vh', overflowY: 'scroll', overflowX: 'visible', padding: '0px', marginTop: '0px', marginBottom: '0px'}} >
+    <Segment  floated='left' style={{ width: '19%', height: '93vh', overflowY: 'scroll', overflowX: 'visible', padding: '0px', marginTop: '0px', marginBottom: '0px'}} >
 
       <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
       <Listings  handleListingClick={this.handleListingClick} people={this.state.results} isEmptySearchInput={this.state.searchInput === ''} queryBy={this.props.activeNavbarItem} />
@@ -85,7 +82,7 @@ class Sidebar extends Component {
 
  const mapStateToProps = state => {
   return(
-   {people: state.people, activeNavbarItem: state.activeNavbarItem, isFetching: state.isFetchingPeople}
+   {people: state.people, activeNavbarItem: state.activeNavbarItem}
  )}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
