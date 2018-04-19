@@ -1,5 +1,5 @@
     import seeds from './seeds'
-    
+    import toCamelCase from 'to-camel-case'
     
     const fetchPeople = () => {
 
@@ -14,9 +14,20 @@
                 
                 return response.json()
             }, error => console.log(error))
-            .then(people => dispatch({type: "RECIEVE_PEOPLE", payload: people}))
+
+            .then(people => {
+                const camelizedPeople = people.map(person =>  {
+                   return {id: person.id , firstName: person.first_name, lastName: person.last_name, address: person.address, city: person.city , state: person.state, zipCode: person.zip_code, country: person.country, phoneNumber: person.phone_number}
+                }) 
+                
+                return camelizedPeople
+            })
+            .then(camelizedPeople =>  
+                 dispatch({type: "RECIEVE_PEOPLE", payload: camelizedPeople})
+                )
         
             }
+
 
         }
 

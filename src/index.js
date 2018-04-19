@@ -5,7 +5,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import {Provider} from 'react-redux'
 import registerServiceWorker from './registerServiceWorker';
-import 'semantic-ui-css/semantic.min.css';
+//import 'semantic-ui-css/semantic.min.css';
+import './semantic/out/semantic.min.css'
 import './index.css';
 import peopleReducer from './reducers/peopleReducer'
 
