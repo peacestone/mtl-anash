@@ -29,7 +29,7 @@ class Listings extends React.Component {
       break
       default:
         contactItems = this.props.people.map((contact, index) => {
-          const name = `${contact.firstName} ${contact.lastName}`
+          const name = `${contact.lastName} ${contact.firstName}`
           return (
           <Listing handleListingClick={this.props.handleListingClick} key={index}  contactDisplay={name} resultsId={index}  />
         )}
