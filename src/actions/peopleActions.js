@@ -1,11 +1,9 @@
-    import seeds from './seeds'
-    import toCamelCase from 'to-camel-case'
     
     const fetchPeople = () => {
 
         return dispatch => {
             dispatch({type: 'FETCH_PEOPLE'})
-            fetch('http://localhost:3001/api/people')
+            fetch('https://mtl-anash-api2.herokuapp.com/api/people')
             .then((response) => {
                 console.log(response)
                 if(!response.ok){

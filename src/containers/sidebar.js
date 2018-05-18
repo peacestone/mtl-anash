@@ -68,11 +68,12 @@ class Sidebar extends Component {
 
   render() {
     return (
-    <Segment  floated='left' style={{ width: '19%', height: '93vh', overflowY: 'scroll', overflowX: 'visible', padding: '0px', marginTop: '0px', marginBottom: '0px'}} >
+    <Segment  floated='left' style={{ width: '19%', height: '93vh',  padding: '0px', marginTop: '0px', marginBottom: '0px'}} >
 
       <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
       <Listings  handleListingClick={this.handleListingClick} people={this.state.results}  queryBy={this.props.activeNavbarItem} />
     </Segment>
+
   )}
 }
 
