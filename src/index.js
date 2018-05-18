@@ -9,6 +9,7 @@ import registerServiceWorker from './registerServiceWorker';
 import './semantic/out/semantic.min.css'
 import './index.css';
 import peopleReducer from './reducers/peopleReducer'
+//import 'react-virtualized/styles.css';
 
 //const store = createStore(peopleReducer,  /* preloadedState, */ window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 

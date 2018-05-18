@@ -6,6 +6,7 @@ import { Segment,Dimmer, Loader } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {fetchPeople, selectPerson} from '../actions/peopleActions'
+import {List as VirtualList, AutoSizer} from 'react-virtualized';
 
 class Sidebar extends Component {
 
@@ -68,10 +69,27 @@ class Sidebar extends Component {
 
   render() {
     return (
-    <Segment  floated='left' style={{ width: '19%', height: '93vh',  padding: '0px', marginTop: '0px', marginBottom: '0px'}} >
+    <Segment  floated='left' style={{ width: '19%', height: '93vh' , padding: '0px', marginTop: '0px', marginBottom: '0px'}} >
 
       <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
-      <Listings  handleListingClick={this.handleListingClick} people={this.state.results}  queryBy={this.props.activeNavbarItem} />
+      <AutoSizer>
+        {({height, width}) => (
+            <VirtualList
+            height={height}
+            rowHeight={35}
+            
+            rowRenderer={({ index, key, style }) => {
+            const person = this.props.people[index]
+              return (<div 
+                key={key} style={style}>  {person.lastName} {person.firstName} </div>)}
+          }
+            width={width}
+            rowCount={this.props.people.length}
+          />
+
+        )}
+        </AutoSizer>
+
     </Segment>
 
   )}
@@ -88,3 +106,4 @@ class Sidebar extends Component {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
 // isEmptySearchInput={this.state.searchInput === ''}
+//      <Listings  handleListingClick={this.handleListingClick} people={this.state.results}  queryBy={this.props.activeNavbarItem} />
