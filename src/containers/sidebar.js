@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {fetchPeople, selectPerson} from '../actions/peopleActions'
 import {List as VirtualList, AutoSizer} from 'react-virtualized';
+import 'react-virtualized/styles.css';
 
 class Sidebar extends Component {
 
@@ -14,7 +15,9 @@ class Sidebar extends Component {
     super(props)
     this.state = {
       searchInput: '',
-      results: this.props.people
+      results: this.props.people,
+      toggle: true
+      
     }
     this.handleListingClick = this.handleListingClick.bind(this)
 
@@ -72,23 +75,26 @@ class Sidebar extends Component {
     <Segment  floated='left' style={{ width: '19%', height: '93vh' , padding: '0px', marginTop: '0px', marginBottom: '0px'}} >
 
       <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
+      {this.state.toggle ? 
       <AutoSizer>
         {({height, width}) => (
             <VirtualList
             height={height}
             rowHeight={35}
-            
+            style={{position: 'relative'}}
             rowRenderer={({ index, key, style }) => {
             const person = this.props.people[index]
               return (<div 
-                key={key} style={style}>  {person.lastName} {person.firstName} </div>)}
+                key={key} className='listing-row' style={style}>  {person.lastName} {person.firstName} </div>)}
           }
             width={width}
             rowCount={this.props.people.length}
           />
 
         )}
-        </AutoSizer>
+        </AutoSizer> : <Listings  handleListingClick={this.handleListingClick} people={this.state.results}  queryBy={this.props.activeNavbarItem} />
+      }
+
 
     </Segment>
 
@@ -106,4 +112,4 @@ class Sidebar extends Component {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
 // isEmptySearchInput={this.state.searchInput === ''}
-//      <Listings  handleListingClick={this.handleListingClick} people={this.state.results}  queryBy={this.props.activeNavbarItem} />
+//      
