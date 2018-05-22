@@ -23,7 +23,7 @@ class navBar extends React.Component {
                 <Menu.Item onClick={this.handleNavBarClick} id='phoneNumber' name='Search By Phone Number' active={this.props.activeNavbarItem === 'phoneNumber'} />
                 <Menu.Item onClick={this.handleNavBarClick} id='address' name='Search By Address' active={this.props.activeNavbarItem === 'address'} />
                 <Menu.Menu position='right' >
-                    <Menu.Item onClick={this.handleNavBarClick} id= 'updateListing' name='Update a Listing' active={this.props.activeNavbarItem === 'updateListing'} />
+                    <Menu.Item onClick={this.handleNavBarClick} id= 'updateListing' name='Update a Listing' active={this.props.activeNavbarItem === 'updateListing'}  />
                 </Menu.Menu>
 
             </Menu>

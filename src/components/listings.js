@@ -20,7 +20,7 @@ class Listings extends React.Component {
     
     //let contactItems
     let displayAttributes = [this.props.queryBy]
-    if (this.props.queryBy === 'name' || this.props.queryBy === 'home') {
+    if (this.props.queryBy === 'name' || this.props.queryBy === 'home' || this.props.queryBy === 'updateListing') {
       displayAttributes = ['lastName', 'firstName']
     }
     
