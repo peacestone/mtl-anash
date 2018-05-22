@@ -1,4 +1,4 @@
-const peopleReducer = (state = {people: [], selectedPerson: {id: '' , firstName: '', lastName: '', address: '', city: '', state: '', zipCode: '', country: '', phoneNumber: ''}, activeNavebarItem: '', isFetchingPeople: false}, action ) => {
+const peopleReducer = (state = {people: [], selectedPerson: {id: '' , firstName: '', lastName: '', address: '', city: '', state: '', zipCode: '', country: '', phoneNumber: ''}, activeNavbarItem: 'home', isFetchingPeople: false}, action ) => {
     switch(action.type){
         case 'RECIEVE_PEOPLE':
             return Object.assign({},state, {people: action.payload, isFetchingPeople: false})

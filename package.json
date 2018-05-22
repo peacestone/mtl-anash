@@ -8,7 +8,7 @@
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
     "react-scripts": "1.0.17",
-    "react-virtualized": "^9.18.5",
+    "react-virtualized": "^9.19.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "semantic-ui": "^2.3.1",
@@ -20,5 +20,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "devDependencies": {}
 }

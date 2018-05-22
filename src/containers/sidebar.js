@@ -6,8 +6,7 @@ import { Segment,Dimmer, Loader } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {fetchPeople, selectPerson} from '../actions/peopleActions'
-import {List as VirtualList, AutoSizer} from 'react-virtualized';
-import 'react-virtualized/styles.css';
+
 
 class Sidebar extends Component {
 
@@ -15,10 +14,9 @@ class Sidebar extends Component {
     super(props)
     this.state = {
       searchInput: '',
-      results: this.props.people,
-      toggle: true
-      
+      results: this.props.people
     }
+
     this.handleListingClick = this.handleListingClick.bind(this)
 
   }
@@ -62,7 +60,9 @@ class Sidebar extends Component {
   handleListingClick = (event, t) => {
 
     
-    const personIndex = event.target.id || event.target.children[0].children[0].id
+    // const personIndex = event.target.key || event.target.children[0].children[0].id
+    
+    const personIndex = event.target.id
     const person = this.state.results[personIndex]
     
     this.props.selectPerson(person)
@@ -75,26 +75,7 @@ class Sidebar extends Component {
     <Segment  floated='left' style={{ width: '19%', height: '93vh' , padding: '0px', marginTop: '0px', marginBottom: '0px'}} >
 
       <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
-      {this.state.toggle ? 
-      <AutoSizer>
-        {({height, width}) => (
-            <VirtualList
-            height={height}
-            rowHeight={35}
-            style={{position: 'relative'}}
-            rowRenderer={({ index, key, style }) => {
-            const person = this.props.people[index]
-              return (<div 
-                key={key} className='listing-row' style={style}>  {person.lastName} {person.firstName} </div>)}
-          }
-            width={width}
-            rowCount={this.props.people.length}
-          />
-
-        )}
-        </AutoSizer> : <Listings  handleListingClick={this.handleListingClick} people={this.state.results}  queryBy={this.props.activeNavbarItem} />
-      }
-
+      <Listings  queryBy={this.props.activeNavbarItem} people={this.props.people} />
 
     </Segment>
 

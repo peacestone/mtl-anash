@@ -30,9 +30,9 @@ xbody {
   box-sizing: border-box;
 }
 
- .ReactVirtualized__Grid__innerScrollContainer {
+ /*.ReactVirtualized__Grid__innerScrollContainer {
 
- }
+ }*/
 
  .listing-row {
     line-height: 35px;

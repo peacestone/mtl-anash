@@ -2,9 +2,8 @@ import React from 'react'
 import Listing from './listing'
 import {List} from 'semantic-ui-react'
 import listStyle from '../semantic/out/components/list.css'
-
-//import {List as VirtualList} from 'react-virtualized';
-
+import {List as VirtualList, AutoSizer} from 'react-virtualized';
+import 'react-virtualized/styles.css';
 
 
 
@@ -19,52 +18,30 @@ class Listings extends React.Component {
 
   render(){
     
-    let contactItems
-    
-    switch(this.props.queryBy){
-      case 'address':
-        contactItems = this.props.people.map((contact, index) => (
-          <Listing handleListingClick={this.props.handleListingClick} key={index}  contactDisplay={contact.address} resultsId={index}  />
-        ))
-      break
-      case 'phoneNumber':
-        contactItems = this.props.people.map((contact, index) => (
-          <Listing handleListingClick={this.props.handleListingClick} key={index} contactDisplay={contact.phoneNumber}  resultsId={index}  />
-          
-        ))
-      break
-      default:
-        //const name = `${contact.lastName} ${contact.firstName}`
-      //   contactItems = (<VirtualList
-      //   height={800}
-      //   rowHeight={50}
-        
-      //   rowRenderer={({ index, key, listStyle }) => {
-      //   const person = this.props.people[index]
-      //    return (<Listing 
-      //      key={key}  handleListingClick={this.props.handleListingClick} resultsId={index} contactDisplay={`${person.lastName} ${person.firstName}`} />)}
-      // }
-      //   width={262}
-      //   rowCount={this.props.people.length}
-      // />)
-
-        contactItems = this.props.people.map((contact, index) => {
-          const name = `${contact.lastName} ${contact.firstName}`
-          return (
-          <Listing handleListingClick={this.props.handleListingClick} key={index}  contactDisplay={name} resultsId={index}  />
-        )}) 
-
-                  
-        }
-        
-
+    //let contactItems
+    let displayAttributes = [this.props.queryBy]
+    if (this.props.queryBy === 'name' || this.props.queryBy === 'home') {
+      displayAttributes = ['lastName', 'firstName']
+    }
     
   return (
-    <div id='listings' >
-      <List selection verticalAlign='middle' divided  >
-        {contactItems }
-      </List>
-    </div>
+      <AutoSizer>
+        {({height, width}) => (
+            <VirtualList
+            height={height}
+            rowHeight={35}
+            rowRenderer={({ index, key, style }) => {
+            const person = this.props.people[index]
+              return (<div 
+                key={key} className='listing-row' style={style} onClick={this.handleListingClick} id={index}  >  {person[displayAttributes[0]]} { displayAttributes.length > 1 &&  person[displayAttributes[1]]}   </div>)
+              }
+          }
+            width={width}
+            rowCount={this.props.people.length}
+          />
+
+        )}
+        </AutoSizer> 
     )
   }
 }
