@@ -75,7 +75,7 @@ class Sidebar extends Component {
     <Segment  floated='left' style={{ width: '19%', height: '93vh' , padding: '0px', marginTop: '0px', marginBottom: '0px'}} >
 
       <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
-      <Listings  queryBy={this.props.activeNavbarItem} people={this.props.people} />
+      <Listings  queryBy={this.props.activeNavbarItem} people={this.state.results} handleListingClick={this.handleListingClick} />
 
     </Segment>
 
@@ -92,5 +92,4 @@ class Sidebar extends Component {
  )}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
-// isEmptySearchInput={this.state.searchInput === ''}
-//      
+      

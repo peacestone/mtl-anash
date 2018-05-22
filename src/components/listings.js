@@ -33,7 +33,7 @@ class Listings extends React.Component {
             rowRenderer={({ index, key, style }) => {
             const person = this.props.people[index]
               return (<div 
-                key={key} className='listing-row' style={style} onClick={this.handleListingClick} id={index}  >  {person[displayAttributes[0]]} { displayAttributes.length > 1 &&  person[displayAttributes[1]]}   </div>)
+                key={key} className='listing-row' style={style} onClick={this.props.handleListingClick} id={index}  >  {person[displayAttributes[0]]} { displayAttributes.length > 1 &&  person[displayAttributes[1]]}   </div>)
               }
           }
             width={width}
