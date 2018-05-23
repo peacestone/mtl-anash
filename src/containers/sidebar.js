@@ -57,14 +57,9 @@ class Sidebar extends Component {
     })
   }
 
-  handleListingClick = (event, t) => {
-
-    
-    // const personIndex = event.target.key || event.target.children[0].children[0].id
-    
+  handleListingClick = (event) => {    
     const personIndex = event.target.id
     const person = this.state.results[personIndex]
-    
     this.props.selectPerson(person)
 }
 
@@ -76,7 +71,7 @@ class Sidebar extends Component {
 
       <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
       <Listings  queryBy={this.props.activeNavbarItem} people={this.state.results} handleListingClick={this.handleListingClick} />
-
+      {this.state.results.length === 0 && <div>No results!</div>}
     </Segment>
 
   )}
