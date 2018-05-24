@@ -23,10 +23,6 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {},
-<<<<<<< HEAD
   "engines" : { "node" : ">=8.11.2" } 
-=======
-  "engines" : { "node" : ">= 8.9.4" } 
->>>>>>> 1019b69b70309835c3e33bce8a7e2a63ee49ae0d
 
 }
