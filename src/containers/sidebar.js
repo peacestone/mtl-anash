@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Listings from '../components/listings'
 import SearchInput from '../components/searchInput'
 import Fuse from 'fuse.js'
-import { Segment,Dimmer, Loader } from 'semantic-ui-react'
+import { Segment,Dimmer, Loader, Container } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {fetchPeople, selectPerson} from '../actions/peopleActions'
@@ -67,12 +67,10 @@ class Sidebar extends Component {
 
   render() {
     return (
-    <Segment  floated='left' style={{ width: '19%', height: '93vh' , padding: '0px', marginTop: '0px', marginBottom: '0px'}} >
-
+    <Container  floated='left' style={{ width: '19%', height: '95vh' , float: 'left', padding: '0px', marginTop: '0px', marginBottom: '0px'}} >
       <SearchInput handleSearchInput={this.handleSearchInput} searchValue={this.state.searchInput}  />
       <Listings  queryBy={this.props.activeNavbarItem} people={this.state.results} handleListingClick={this.handleListingClick} />
-      {this.state.results.length === 0 && <div>No results!</div>}
-    </Segment>
+    </Container>
 
   )}
 }

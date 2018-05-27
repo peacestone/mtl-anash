@@ -38,6 +38,7 @@ class Listings extends React.Component {
           }
             width={width}
             rowCount={this.props.people.length}
+            noRowsRenderer={() => <div>No Results!</div>}
           />
 
         )}
