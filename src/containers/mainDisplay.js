@@ -38,7 +38,7 @@ class MainDisplay extends React.Component {
     
     return (
             <div style={{float: 'left', width: '79%'}}  >
-			{ this.props.selectedPerson.firstName ? <ListingDetails selectedPerson={this.props.selectedPerson} /> : <h1 style={{fontSize: '400%', textAlign: 'center'}}>Welcome to MTL Anash!</h1> } 
+			{ this.props.selectedPerson.firstName ? <ListingDetails selectedPerson={this.props.selectedPerson} /> : <h1 style={{fontSize: '400%', textAlign: 'center'}}>Welcome to our Community Directory!</h1> } 
             </div>
         )
     }

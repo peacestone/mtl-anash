@@ -18,7 +18,7 @@ class navBar extends React.Component {
     render() {
         return (
             <Menu style={{ marginBottom: '0px'}}  fluid  size='large' >
-                <Menu.Item name='MTL Anash'  header onMouseDown={this.handleNavBarClick} id='home'/>
+                <Menu.Item name='Community Directory'  header onMouseDown={this.handleNavBarClick} id='home'/>
                 <Menu.Item onClick={this.handleNavBarClick} id='name' name='Search By Name'active={this.props.activeNavbarItem === 'name'}/>
                 <Menu.Item onClick={this.handleNavBarClick} id='phoneNumber' name='Search By Phone Number' active={this.props.activeNavbarItem === 'phoneNumber'} />
                 <Menu.Item onClick={this.handleNavBarClick} id='address' name='Search By Address' active={this.props.activeNavbarItem === 'address'} />
